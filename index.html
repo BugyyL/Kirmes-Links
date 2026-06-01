@@ -152,6 +152,7 @@
 <main>
   <div class="calendar-wrap">
     <iframe
+      id="cal"
       title="Zusammengeführter Veranstaltungskalender"
       loading="lazy"
       src="https://calendar.google.com/calendar/embed?src=f31b0a46874df0b67558a3c9b38a2e57d91508486aaba015904356b52c9d9339%40group.calendar.google.com&amp;color=%23039BE5&amp;src=kirmes.klettbach%40gmail.com&amp;color=%23D50000&amp;ctz=Europe%2FBerlin&amp;mode=MONTH&amp;showTitle=0&amp;showPrint=0&amp;showCalendars=0&amp;showTz=0">
@@ -160,6 +161,37 @@
 </main>
 
 <footer>© 2026 Kirmesgesellschaft Klettbach-Schellroda · Termine live aus Google Kalender</footer>
+
+<script>
+  // Auf dem Handy die übersichtliche Terminliste (AGENDA) zeigen,
+  // auf Tablet/Desktop die klassische Monatsansicht (MONTH).
+  (function () {
+    var iframe = document.getElementById('cal');
+
+    // alle Kalender-Parameter an einer Stelle – Ansicht wird dynamisch ergänzt
+    var base =
+      'https://calendar.google.com/calendar/embed' +
+      '?src=f31b0a46874df0b67558a3c9b38a2e57d91508486aaba015904356b52c9d9339%40group.calendar.google.com&color=%23039BE5' +
+      '&src=kirmes.klettbach%40gmail.com&color=%23D50000' +
+      '&ctz=Europe%2FBerlin&showTitle=0&showPrint=0&showCalendars=0&showTz=0';
+
+    // Phones gelten als schmaler als 600px
+    var phone = window.matchMedia('(max-width: 600px)');
+    var current = null; // welche Ansicht ist gerade geladen?
+
+    function apply(e) {
+      var mode = e.matches ? 'AGENDA' : 'MONTH';
+      if (mode === current) return;     // nur neu laden, wenn sich die Ansicht wirklich ändert
+      current = mode;
+      iframe.src = base + '&mode=' + mode;
+    }
+
+    apply(phone);                        // beim Laden passend setzen
+    // bei Rotation / Größenänderung umschalten (moderne + ältere Browser)
+    if (phone.addEventListener) phone.addEventListener('change', apply);
+    else phone.addListener(apply);
+  })();
+</script>
 
 </body>
 </html>
