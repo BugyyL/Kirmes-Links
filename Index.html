@@ -1,84 +1,163 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <title>Kirmesgesellschaft Klettbach/Schellroda</title>
-  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kirmesgesellschaft Klettbach-Schellroda | Veranstaltungskalender</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@700;800&display=swap" rel="stylesheet"/>
   <style>
+    :root {
+      --bg:      #08090d;
+      --surface: #111318;
+      --border:  rgba(255,255,255,0.08);
+      --accent1: #ff5f40;
+      --accent2: #00e5c4;
+      --text:    #e8e8f0;
+      --muted:   #7a7a90;
+      --mono:    'Space Mono', monospace;
+      --display: 'Syne', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      height: 100%;
+    }
+
     body {
-      font-family: 'Raleway', sans-serif;
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(135deg, #f7f7f7, #e1e1e1);
-      color: #333;
+      font-family: var(--mono);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── HEADER ── */
+    header {
+      text-align: center;
+      padding: 2rem 1.5rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      color: var(--accent2);
+      text-transform: uppercase;
+      border: 1px solid var(--accent2);
+      padding: 0.25rem 0.75rem;
+      border-radius: 100px;
+      margin-bottom: 1rem;
+    }
+
+    header h1 {
+      font-family: var(--display);
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      background: linear-gradient(135deg, #fff 30%, var(--accent1));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .header-sub {
+      margin-top: 0.6rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+    }
+
+    /* ── LEGEND ── */
+    .legend {
       display: flex;
       justify-content: center;
-      align-items: center;
-      min-height: 100vh;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+      margin-top: 1rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+    .legend-item { display: flex; align-items: center; gap: 0.45rem; }
+    .legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+
+    /* ── CALENDAR ── */
+    main {
+      flex: 1;
+      padding: 1.5rem;
+      display: flex;
     }
 
-    .container {
-      background: white;
-      padding: 2.5rem;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    .calendar-wrap {
+      flex: 1;
+      background: #fff;               /* der Google-Kalender ist hell */
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+      min-height: 70dvh;
+    }
+
+    .calendar-wrap iframe {
+      display: block;
+      width: 100%;
+      height: 100%;
+      min-height: 70dvh;
+      border: 0;
+    }
+
+    /* ── FOOTER ── */
+    footer {
       text-align: center;
-      max-width: 600px;
-      width: 90%;
+      padding: 1.25rem 1rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
     }
 
-    img.logo {
-      width: 120px;
-      margin-bottom: 1.5rem;
-    }
-
-    h1 {
-      color: #b4002f;
-      margin-bottom: 0.5rem;
-    }
-
-    h2 {
-      font-weight: normal;
-      font-size: 1.1rem;
-      color: #666;
-      margin-bottom: 2rem;
-    }
-
-    ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    li {
-      margin: 1rem 0;
-    }
-
-    a {
-      text-decoration: none;
-      background-color: #b4002f;
-      color: white;
-      padding: 0.75rem 1.5rem;
-      border-radius: 10px;
-      font-weight: 600;
-      display: inline-block;
-      transition: background-color 0.3s ease;
-    }
-
-    a:hover {
-      background-color: #8e0025;
+    @media (max-width: 600px) {
+      main { padding: 1rem; }
+      .calendar-wrap, .calendar-wrap iframe { min-height: 75dvh; }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <img src="logo.jpg" alt="Kirmesgesellschaft Logo" class="logo">
-    <h1>Kirmesgesellschaft</h1>
-    <h2>Klettbach / Schellroda · Est. 2019</h2>
-    <ul>
-      <li><a href="https://drive.google.com/drive/folders/1fSF3pxhJ8OVC14bU9EU0QZtlpCoSkgoh?usp=sharing" target="_blank">📸 Bilder & Videos</a></li>
-      <li><a href="https://drive.google.com/drive/folders/1CzZ5L2jXRGKVkSoxxAx_l_9Y1I5IeRMu?usp=drive_link" target="_blank">📄 Allgemeine Informationen</a></li>
-      <li><a href="kalender.html">📅 Kalender</a></li>
-    </ul>
+
+<header>
+  <div class="header-tag">
+    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="4" width="18" height="18" rx="2"/>
+      <path d="M3 9h18M8 2v4M16 2v4"/>
+    </svg>
+    Veranstaltungen
   </div>
+  <h1>Kirmesgesellschaft<br>Klettbach-Schellroda</h1>
+  <p class="header-sub">Unsere Termine im Überblick</p>
+  <div class="legend">
+    <span class="legend-item"><span class="legend-dot" style="background:#039be5"></span>Allgemein</span>
+    <span class="legend-item"><span class="legend-dot" style="background:#d50000"></span>Kirmes Klettbach</span>
+  </div>
+</header>
+
+<main>
+  <div class="calendar-wrap">
+    <iframe
+      title="Zusammengeführter Veranstaltungskalender"
+      loading="lazy"
+      src="https://calendar.google.com/calendar/embed?src=f31b0a46874df0b67558a3c9b38a2e57d91508486aaba015904356b52c9d9339%40group.calendar.google.com&amp;color=%23039BE5&amp;src=kirmes.klettbach%40gmail.com&amp;color=%23D50000&amp;ctz=Europe%2FBerlin&amp;mode=MONTH&amp;showTitle=0&amp;showPrint=0&amp;showCalendars=0&amp;showTz=0">
+    </iframe>
+  </div>
+</main>
+
+<footer>© 2026 Kirmesgesellschaft Klettbach-Schellroda · Termine live aus Google Kalender</footer>
+
 </body>
 </html>
