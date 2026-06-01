@@ -42,6 +42,14 @@
       border-bottom: 1px solid var(--border);
     }
 
+    .logo {
+      display: block;
+      width: clamp(120px, 28vw, 180px);
+      height: auto;
+      margin: 0 auto 1.25rem;
+      filter: drop-shadow(0 6px 18px rgba(0,0,0,0.45));
+    }
+
     .header-tag {
       display: inline-flex;
       align-items: center;
@@ -132,13 +140,7 @@
 <body>
 
 <header>
-  <div class="header-tag">
-    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <rect x="3" y="4" width="18" height="18" rx="2"/>
-      <path d="M3 9h18M8 2v4M16 2v4"/>
-    </svg>
-    Veranstaltungen
-  </div>
+  <img class="logo" src="logo.png" alt="Wappen der Kirmesgesellschaft Klettbach-Schellroda"/>
   <h1>Kirmesgesellschaft<br>Klettbach-Schellroda</h1>
   <p class="header-sub">Unsere Termine im Überblick</p>
   <div class="legend">
